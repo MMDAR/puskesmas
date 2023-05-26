@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\PasienController;
 use Illuminate\Support\Facades\Route;
@@ -40,3 +41,6 @@ Route::get('/dokter/create', [DokterController::class, 'create']);
 
 // Route untuk memproses form tambah dokter
 Route::post('/dokter', [DokterController::class, 'store']);
+
+// 
+Route::get('/', [DashboardController::class, 'index']);
