@@ -30,7 +30,12 @@
                 <tr>
                     <td>@php echo $iteration++ @endphp</td>
                     <td>@php echo $item['nama']@endphp</td>
-                    <td>@php echo $item['jk']@endphp</td>
+                    <td>@if($item['jk'] == 'L')
+                            Laki-laki
+                        @else
+                            Perempuan
+                        @endif
+                    </td>
                     <td>@php echo $item['tgl_lahir']@endphp</td>
                     <td>@php echo $item['alamat']@endphp</td>
                     <td>@php echo $item['telp']@endphp  </td>
