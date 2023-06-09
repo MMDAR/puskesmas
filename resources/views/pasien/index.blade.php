@@ -40,11 +40,12 @@
                     <td>@php echo $item['alamat']@endphp</td>
                     <td>@php echo $item['telp']@endphp  </td>
                     <td>
-                        <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="#" method="POST" class="d-inline">
+                        <a href="/pasien/edit/{{$item->id}}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="/pasien" method="POST" class="d-inline">
                             @csrf
                             @method('delete')
-                            <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">Hapus</button>
+                            <input type="hidden" value="{{$item->id}}" name="id">
+                            <button class="btn btn-danger btnx-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">Hapus</button>
                         </form>
                     </td>
                     @endforeach
