@@ -36,6 +36,16 @@ Route::get('/dokter/create', [DokterController::class, 'create'])->middleware('a
 // Route untuk memproses form tambah dokter
 Route::post('/dokter', [DokterController::class, 'store'])->middleware('auth');
 
+//Route untuk mengedit dokter
+Route::get('/dokter/edit/{id}', [DokterController::class, 'edit'])->middleware('auth');
+
+// Route untuk memproses edit dokter
+Route::put('/dokter/{id}', [DokterController::class, 'update'])->middleware('auth');
+
+// route delete dokter
+Route::delete('/dokter', [DokterController::class, 'destroy'])->middleware('auth');
+
+
 //Route untuk mengedit pasien  
 Route::get('/pasien/edit/{id}', [PasienController::class, 'edit'])->middleware('auth');
 
