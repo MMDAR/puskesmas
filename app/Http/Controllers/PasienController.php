@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dokter;
 use App\Models\Pasien;
 use Illuminate\Http\Request;
 
@@ -17,18 +18,23 @@ class PasienController extends Controller
     }
     public function create()
     {
-        return view('pasien.create');
+        $dokters  = Dokter::all();
+        return view('pasien.create',[
+            'dokters' => $dokters
+        ]);
     }
     // method untuk menyimpan ke database
     public function store(Request $request)
     {
-        // Validasi nama
+        // Validasi data
         $request->validate([
             'nama' => 'required|min:3',
             'jk' => 'required',
             'tgl_lahir' => 'required|date',
             'alamat' => 'required',
             'telp' => 'required|numeric',
+            'dokter_id' => 'required'
+
         ]);
 
         Pasien::create([
@@ -37,6 +43,8 @@ class PasienController extends Controller
             'tgl_lahir' => $request->tgl_lahir,
             'alamat' => $request->alamat,
             'telp' => $request->telp,
+            'dokter_id' => $request->dokter_id
+
         ]);
         return redirect('/pasien');
     }
@@ -45,8 +53,12 @@ class PasienController extends Controller
         // Cari pasien berdasarkan id
         $pasien = Pasien::find($id);
 
+        $dokters = Dokter::all();
+
+
         return view('pasien.edit', [
             'pasien' => $pasien,
+            'dokters' => $dokters
         ]);
     }
 
@@ -58,10 +70,13 @@ class PasienController extends Controller
             'tgl_lahir' => 'required|date',
             'alamat' => 'required',
             'telp' => 'required|numeric',
+            'dokter_id' => 'required'
+
         ]);
 
         // cari pasien berdasarkan id
         $pasien = Pasien::find($id);
+
 
         // simpan perubahan
         $pasien->update([
@@ -70,10 +85,15 @@ class PasienController extends Controller
             'tgl_lahir' => $request->tgl_lahir,
             'alamat' => $request->alamat,
             'telp' => $request->telp,
+            'dokter_id' => $request->dokter_id
+
         ]);
+
+
 
         return redirect('/pasien')->with('success', 'Data pasien berhasil diperbaharui');
     }
+
 
     // method hapus
     public function destroy(Request $request){

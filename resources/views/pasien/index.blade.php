@@ -23,6 +23,8 @@
                     <th>Tanggal Lahir</th>
                     <th>Alamat</th>
                     <th>No. Telp</th>
+                    <th>Dokter</th>
+
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -41,6 +43,8 @@
                     <td>@php echo $item['tgl_lahir']@endphp</td>
                     <td>@php echo $item['alamat']@endphp</td>
                     <td>@php echo $item['telp']@endphp  </td>
+                    <td>{{ $item->dokter->nama }}</td>
+
                     <td>
                          @if (Auth::user()->role == 'admin')
                         <a href="/pasien/edit/{{$item->id}}" class="btn btn-warning btn-sm">Edit</a>
